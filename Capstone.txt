@@ -1,0 +1,57 @@
+Goal Statement
+We will create a database of inventory that can be accessed by employees through a website to check inventory information. Customers will also have access through a website to information about products offered based on the inventory database.
+
+
+Feature List Specific to the Inventory System Database
+
+Inventory System
+The database will be made up of items (products the business sells). Each item will have a price, ID (barcode/number), Shelf Location, Shelf Cap (max amount shelf will hold), Quantity on Hand (amount is stock), Backroom Location, Quantity in Back. The goal is to keep the shelf full while limiting the amount in the back. When the On Hand Quantity reaches a certain amount an alert to reorder will appear.
+We will also want to be able to change prices ( increase/decrease), shelf locations (create/delete), cap (increase/decrease), and back locations (add/remove). Items should be able to be added to (orders arrive) and removed from (to stock the shelf) the backroom and removed from the shelf (when an item is purchased).
+
+Website for Employees
+Uses information from the inventory system database to check inventory and view what needs ordered
+Also uses a login to determine what information is visible and a logout.
+
+Customer Website
+Displays products the business sells and information about them.
+
+
+Other Features “wishlist”
+
+Full internal website that:
+Displays schedule information for employees
+Offers training courses
+Has contact information for other employees
+Generates financial reports
+Apply for positions
+
+Public website
+Company information
+Apply for job
+
+
+
+
+
+INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+VALUES ('Cardinal','Tom B. Erichsen','Skagen 21','Stavanger','4006','Norway');
+
+CREATE DATABASE Salon;
+
+--PID=Product ID
+CREATE TABLE Inventory
+(PID int, ProductName varchars(255), NumSold int, OurPrice float, CustomerPrice float);
+
+INSERT INTO Inventory (PID, ProductName, NumSold, OurPrice, CustomerPrice)
+VALUES ('1', 'Roquelle No.5', '0', '2.5', '6.');
+...    ('2', 'AHH(Anti-Helmet-Hair)', '0', '3.96', '7.5');
+...    ('3', 'Katelyn's Cond.', '0', '8.54', '12.');
+...    ('4', 'LeaveIt in Cond.', '0', '6.18', '9.5');
+...    ('5', 'Placeholder', '0', '5.95', '13.');
+
+--EID=Employee ID
+CREATE TABLE Employee
+(EID, EmpName, PID, ...)
+
+CREATE TABLE Sales
+(
