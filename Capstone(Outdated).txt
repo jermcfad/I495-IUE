@@ -1,0 +1,59 @@
+-  A top-down design describing a set of functions or procedures, each with its parameters, return value, and side-effects.
+
+Database mySQL that will be interfaced using PHP.
+
+[Login procedure]
+parameters: user(employee ID), password(user made)
+Either grants access or denies it.
+
+[*Business Name* Portal]
+Description:  A web page based Tab controlled system to view the information.
+
+	(Home) Brief overview of the information.
+	(Employee Center) 
+		Links to the three things: Opening of positions, suggestions, transfer location.
+		Expected results: Additional tab row, maybe on the vertical (left) edge that would have the Opening of positions,
+			suggestions, transfer location tabs.
+		A detailed view of the tab that is selected in the Employee Center directory.
+	(Schedule)
+		{important events that come up, as a reminder.}
+	(Training)
+		{Training that is due, organized by most recent/most important}
+	(Inventory)
+		Links to the location, an overview of the items stored in each of the places(backroom, shelf, ordered, total) 
+			all pulled and organized from the information in the database.
+		{Backroom}
+		{Shelf}
+		{Ordered}
+		{Total}
+	(Reports)
+		{Reading reports, financial, employee, etc}
+	
+
+-  An object-oriented design describing a set of classes and their methods, possibly with UML diagrams.
+
+Tab Class that orients the view of the page, hides information of the unselected tabs while the selected tab is viewable.
+	(Methods)
+	Hide: hides the non-selected tab information from view
+	Select: shows the selected tab information
+	Get: a method to grab the information from the database.
+	
+	Employee Center Class (Tab is the Superclass to inherit formatting and fonts, etc)
+		{Opening of positions: Drop down list; using your user id and selection from the drop down and send it to an email account. }
+		{suggestions: Text box for input with a submit button, anonymous, goes to an email account.} 
+		{transfer location: 2 drop down lists that have states, city.  A text box to enter the dates, or range of dates.}
+	
+	Schedule Class (Tab is the Superclass to inherit formatting and fonts, etc)
+		(Methods)
+		Shapshot: Gives a quick view of your work week(Hours of work, meetings, birthdays{maybe})
+		Calendar: when selected, this renders a schedule for the month, unscheduled days will be greyed out.  
+		There will be controls to move back and forth through months and maybe add custom dates for reminders.
+		
+	Training Class (Tab is the Superclass to inherit formatting and fonts, etc)
+		
+		
+	
+
+-  An Entity-Relationship model and a description of tables for a database-oriented project.
+
+-  Algorithms used by non-obvious functions or methods.

@@ -29,7 +29,21 @@ Public website
 Company information
 Apply for job
 
+ ID (Barcode/number), 
+ Price, 
+ Shelf Location (location in store), 
+ Bin Location (location in backroom), 
+ Quantity in each location (shelf, bin), 
+ Quantity Ordered (amount coming), 
+ shelf limit (max amount that will fit on the shelf; determines when we need to order)
 
+php to access the database:
+<?php
+	$driver = 'sql:host=localhost;dbname=salon';
+	user = 'Celeri';
+	pass = 'password';
+	attr = array(PDO::ATTR_PERSISTENT => true,
+		PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
 
 
 
