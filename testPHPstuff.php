@@ -513,10 +513,6 @@ while (odbc_fetch_row($result)) //while there are rows
   </script>
 
 /* PDO */
-$db_host ="localhost";
-$db_user ="sa";
-$db_pass ="Lezulisafaggot1";
-$db_name ="salon";
 
 @sql_connect ("","","") or die ("cannot connect sql");
 @sql_selectdb ("$db_name") or die ("No Db Call = $db_name");
