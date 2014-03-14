@@ -1,0 +1,34 @@
+nav ul li {
+	display:inline;
+	
+}
+
+nav {
+	text-align:center;
+	height:100%;
+	background-color:#F2C45A;
+}
+
+nav ul li a{
+	margin:20px;
+	text-decoration:none;
+	font-size:20px;
+}
+
+#logowrap{
+	position:relative;
+	z-index:2;
+}
+
+
+#leftstrap {
+	float:left;
+	margin-top:-340px;
+	z-index:1;
+}
+
+#rightstrap{
+	float:right;
+	margin-top:-340px;
+	z-index:1;
+}
