@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Salon Database</title>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$( "#tabs" ).tabs();
+			});
+		</script>
+		<?php
+
+		require_once('dbconf/dbconf.php'); // Needed for Database login
+		
+		function deleteRow($row_to_delete, $rowID, $tableID) {
+			
+			// Variables to delete rows (rowID, array (list-like) of row(s) to delete, tableID)
+			// Delete specific rows
+			$sth = $dbh->prepare("DELETE [row] FROM [table]");
+			$result = $sth->execute();
+
+		}
+		
+		function deleteCell($array, $cellID, $tableID) {
+			$sth = $dbh->prepare("DELETE [row] FROM [table]");
+			$result = $sth->execute();
+		}
+		
+		// Kicking tires, lighting fires...
+
+		// Connection from PHP to MSSQL via PDO
+		// DataBase Host
+		$dbh = new PDO($dsn, $user, $password);
+			
+		// Sent/Send To Host and preparing the query to send. (Backbar)
+		$sth = $dbh->prepare("SELECT * FROM Backbar");
+			
+		// Send that query!
+		$result = $sth->execute();
+			
+		// Fetch all of the remaining rows in the result set.
+		$backBarRow = $sth->fetchAll();
+
+		// Sent/Send To Host and preparing the query to send. (Retail)
+		$sth = $dbh->prepare("SELECT * FROM Retail");
+
+		// Send next query!
+		$result = $sth->execute();
+
+		// Fetch all of the new results in the new result set.
+		$retailRow = $sth->fetchAll();
+
+		?>
+		<!-- Credits to Spry(Adobe Systems Incorporated) for base JavaScript and CSS.  
+		Alterations made by Jeremy McFadden, Holden Smith, Patricia Bischoff & Eric Venable (Ordered in no specific way)
+		-->
+	</head>
+	<body>
+		<?php
+
+		function tableMaker($array) {
+			$rowNumber = 0;
+			$cellNumber = 0;
+			for ( $insideArray=0; $insideArray<=count($array); $insideArray++) {
+				echo '<tr rowID="' . $rowNumber . '">';
+				for ( $arrayPos=0; $arrayPos <= 15; $arrayPos++) {
+					echo '<td cellID="' . $cellNumber . '">' . $array[$insideArray][$arrayPos] . '</td>';
+					$cellNumber++;
+				}
+			$rowNumber++;
+			echo '</tr>';
+			}
+		}
+		// Start the table format extravaganza!
+		print('<div id="tabs">
+		<ul id="tabs">
+			<li><a href="#tabs-1">Retail</a></li>
+			<li><a href="#tabs-2">Backbar</a></li>
+			<li><a href="#tabs-3">Equipment</a></li>
+			<li><a href="#tabs-4">Supplies</a></li>
+		</ul>');
+		print('<div id="tabs-1">
+			<table border="1" tableID="1">
+				<tr><th>Company</th><th>Product Name</th><th>Barcode#</th>
+				<th>Size</th><th>Wholesale Price</th><th>Shelf Location</th>
+				<th>Quantity On Hand</th><th>Retail Price</th><th>Quantity In Storage</th>
+				<th>Vendor</th><th>Vendor Region</th><th>Vendor Mileage</th></tr>');
+		tableMaker($retailRow);
+		print('</table>
+			</div>');
+			
+		print('<div id="tabs-2">
+			<table border="1" tableID="2">
+				<tr><th>Product Company</th><th>Product Name</th><th>Barcode #</th>
+				<th>Color</th><th>Perms</th><th>Cost</th>
+				<th>Volume</th><th>Size</th><th>Shelf Location</th>
+				<th>Shelf Cap</th><th>Quantity On Hand</th><th>Storage Location</th>
+				<th>Quantity In Storage</th><th>Vendor</th><th>Vendor Region</th>
+				<th>Vendor Mileage</th></tr>');
+		tableMaker($backBarRow);
+		print('</table>
+			</div>');
+		
+		
+		// Need this to close "TabbedPanelsContentGroup"
+		print('</div>');
+
+		echo "<p>You should see a table, unless I broke it.</p>";
+		unset($dbh);
+		?>
+		<script type="text/javascript">
+			$(document).ready($(function change_cell_content() {
+				$("td").on("click",
+					function(){
+						var $cell_id_ref = $(this).attr('cellID');
+						var newValue;
+
+						var currentValue = document.querySelector('[cellID="' + $cell_id_ref + '"]').innerHTML;
+						var changeValue = prompt("Enter a new value. (Current " + currentValue + ")");
+						if ( changeValue!=null ) {
+							newValue = changeValue;
+							document.querySelector('[cellID="' + $cell_id_ref + '"]').innerHTML = newValue;
+							("#cellID").css("background-color","yellow");
+						}
+					});
+			}));
+		</script>
+	</body>
+</html>
